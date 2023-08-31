@@ -32,7 +32,6 @@ import numpy as np
 import logging
 import threading
 from threading import Timer
-import scipy
 import queue
 from bayes_opt import BayesianOptimization, UtilityFunction
 from scipy.optimize import NonlinearConstraint
@@ -250,7 +249,7 @@ class App(tk.Tk):
         # create an option menu to select com port of syringe pumps
         ports = [str(port).split(' ')[0] for port in serial_ports()]
         self.com_port = tk.StringVar(self, 'Select Port')
-        self.com_menu=tk.OptionMenu(self,self.com_port,*ports)
+        self.com_menu=tk.OptionMenu(self,self.com_port,*ports if ports else [None])
         self.com_menu.config(width=16)
 
         # Hidden. For future use
